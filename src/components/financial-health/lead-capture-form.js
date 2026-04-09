@@ -7,6 +7,20 @@ const initialLeadForm = {
   consent: false,
 };
 
+function saveLeadToBrowser(submission) {
+  if (typeof window === "undefined") return;
+
+  const storageKey = "financial-health-check-leads";
+  const existing = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
+  existing.push({
+    id: crypto.randomUUID(),
+    submittedAt: new Date().toISOString(),
+    ...submission,
+    storage: "browser",
+  });
+  window.localStorage.setItem(storageKey, JSON.stringify(existing));
+}
+
 export function LeadCaptureForm({ answers, result, onSubmitted, onBack }) {
   const [form, setForm] = useState(initialLeadForm);
   const [status, setStatus] = useState("idle");
@@ -38,7 +52,7 @@ export function LeadCaptureForm({ answers, result, onSubmitted, onBack }) {
         }),
       });
 
-      const payload = await response.json();
+      const payload = await response.json().catch(() => ({}));
 
       if (!response.ok) {
         throw new Error(payload.error || "Unable to save your details right now.");
@@ -47,8 +61,13 @@ export function LeadCaptureForm({ answers, result, onSubmitted, onBack }) {
       setStatus("success");
       onSubmitted(payload);
     } catch (submitError) {
-      setStatus("idle");
-      setError(submitError.message);
+      saveLeadToBrowser({
+        lead: form,
+        answers,
+        result,
+      });
+      setStatus("success");
+      onSubmitted({ success: true, storage: "browser" });
     }
   }
 

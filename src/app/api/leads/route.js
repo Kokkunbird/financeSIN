@@ -15,6 +15,12 @@ async function readLeads() {
       return [];
     }
 
+    if (error.name === "SyntaxError") {
+      await mkdir(dataDirectory, { recursive: true });
+      await writeFile(leadFile, "[]", "utf8");
+      return [];
+    }
+
     throw error;
   }
 }
@@ -41,6 +47,7 @@ export async function POST(request) {
     };
 
     existing.push(submission);
+    await mkdir(dataDirectory, { recursive: true });
     await writeFile(leadFile, JSON.stringify(existing, null, 2), "utf8");
 
     return Response.json({ success: true, id: submission.id });

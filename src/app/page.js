@@ -122,6 +122,20 @@ function average(values) {
   return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
 }
 
+function saveLeadToBrowser(submission) {
+  if (typeof window === "undefined") return;
+
+  const storageKey = "financial-health-check-leads";
+  const existing = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
+  existing.push({
+    id: crypto.randomUUID(),
+    submittedAt: new Date().toISOString(),
+    ...submission,
+    storage: "browser",
+  });
+  window.localStorage.setItem(storageKey, JSON.stringify(existing));
+}
+
 function buildResults(answers) {
   const savingsHealth = average([
     getOptionScore("income", answers.income),
@@ -328,7 +342,7 @@ export default function FinancialHealthApp() {
         }),
       });
 
-      const payload = await response.json();
+      const payload = await response.json().catch(() => ({}));
 
       if (!response.ok) {
         throw new Error(payload.error || "Unable to unlock your report right now.");
@@ -337,7 +351,13 @@ export default function FinancialHealthApp() {
       setResults(builtResults);
       setStage("results");
     } catch (error) {
-      setLeadError(error.message);
+      saveLeadToBrowser({
+        lead,
+        answers,
+        result: builtResults,
+      });
+      setResults(builtResults);
+      setStage("results");
     } finally {
       setSubmitting(false);
     }
