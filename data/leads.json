@@ -1,0 +1,711 @@
+[
+  {
+    "id": "bef43052-d3d2-42ac-a8ec-4ffc6b2e097b",
+    "submittedAt": "2026-04-09T14:55:37.519Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 0,
+      "emergency": 2,
+      "debt": 1,
+      "hospital": 2,
+      "incomeProtection": 1,
+      "dependents": 3,
+      "retirement": 1,
+      "planning": 1,
+      "concern": 2
+    },
+    "result": {
+      "total": 47,
+      "tier": {
+        "label": "Critical Gaps Identified",
+        "tone": "rose",
+        "headline": "You may have critical financial gaps that could affect your long-term stability.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "categories": [
+        {
+          "title": "Savings health",
+          "score": 49,
+          "message": "You may not have sufficient emergency reserves if your income is disrupted."
+        },
+        {
+          "title": "Debt health",
+          "score": 45,
+          "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+        },
+        {
+          "title": "Protection health",
+          "score": 45,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "title": "Planning health",
+          "score": 49,
+          "message": "Your retirement planning may not be on track if priorities keep getting pushed back."
+        }
+      ],
+      "strongestGap": {
+        "title": "Debt health",
+        "score": 45,
+        "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+      },
+      "personalisedOpen": "Based on your responses, debt stress may be limiting your flexibility more than you realise."
+    }
+  },
+  {
+    "id": "92e62152-8d97-4237-9b1d-c391c0b60769",
+    "submittedAt": "2026-04-09T15:31:40.296Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 0,
+      "emergency": 3,
+      "debt": 2,
+      "hospital": 1,
+      "incomeProtection": 2,
+      "dependents": 1,
+      "retirement": 2,
+      "planning": 0,
+      "concern": 1
+    },
+    "result": {
+      "total": 60,
+      "tier": {
+        "label": "Stable but Exposed",
+        "tone": "amber",
+        "headline": "You may have financial gaps that deserve attention soon.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 58,
+          "benchmarkScore": 71,
+          "message": "Your emergency buffer exists, but it may still be thinner than you want in a major setback."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 72,
+          "benchmarkScore": 68,
+          "message": "Your debt looks manageable today, but tighter margins can still become a problem under stress."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 59,
+          "benchmarkScore": 73,
+          "message": "You may have some protection in place, but there could still be important blind spots."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 50,
+          "benchmarkScore": 69,
+          "message": "Your retirement planning may not be on track if priorities keep getting pushed back."
+        }
+      ],
+      "weakestCategory": {
+        "key": "planning",
+        "title": "Planning health",
+        "userScore": 50,
+        "benchmarkScore": 69,
+        "message": "Your retirement planning may not be on track if priorities keep getting pushed back."
+      },
+      "personalisedOpen": "Based on your responses, protection and medical cost exposure may be the area to review first."
+    }
+  },
+  {
+    "id": "13bb4cc8-0b91-40ed-ba18-23c651eb0c44",
+    "submittedAt": "2026-04-09T15:34:16.586Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 1,
+      "emergency": 2,
+      "debt": 1,
+      "hospital": 2,
+      "incomeProtection": 1,
+      "dependents": 2,
+      "retirement": 0,
+      "planning": 1,
+      "concern": 2
+    },
+    "result": {
+      "total": 47,
+      "tier": {
+        "label": "Critical Gaps Identified",
+        "tone": "rose",
+        "headline": "You may have critical financial gaps that could affect your long-term stability.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 60,
+          "benchmarkScore": 71,
+          "message": "Your emergency buffer exists, but it may still be thinner than you want in a major setback."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 45,
+          "benchmarkScore": 68,
+          "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 45,
+          "benchmarkScore": 73,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 38,
+          "benchmarkScore": 69,
+          "message": "Your retirement planning may not be on track if priorities keep getting pushed back."
+        }
+      ],
+      "weakestCategory": {
+        "key": "planning",
+        "title": "Planning health",
+        "userScore": 38,
+        "benchmarkScore": 69,
+        "message": "Your retirement planning may not be on track if priorities keep getting pushed back."
+      },
+      "personalisedOpen": "Based on your responses, debt stress may be limiting your flexibility more than you realise."
+    }
+  },
+  {
+    "id": "40ac5e0c-5787-4230-8f1f-7bbf08dd6f24",
+    "submittedAt": "2026-04-09T15:47:16.913Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 1,
+      "emergency": 2,
+      "debt": 1,
+      "hospital": 2,
+      "incomeProtection": 2,
+      "dependents": 1,
+      "retirement": 2,
+      "planning": 1,
+      "concern": 2
+    },
+    "result": {
+      "total": 59,
+      "tier": {
+        "label": "Stable but Exposed",
+        "tone": "amber",
+        "headline": "You may have financial gaps that deserve attention soon.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "comparisonDelta": -8,
+      "comparisonDirection": "below",
+      "comparisonText": "You are 8 points below the average Singaporean.",
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 60,
+          "benchmarkScore": 71,
+          "message": "Your emergency buffer exists, but it may still be thinner than you want in a major setback."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 45,
+          "benchmarkScore": 68,
+          "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 70,
+          "benchmarkScore": 73,
+          "message": "You may have some protection in place, but there could still be important blind spots."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 61,
+          "benchmarkScore": 69,
+          "message": "You have planning momentum, but your long-term roadmap may still need sharper structure."
+        }
+      ],
+      "weakestCategory": {
+        "key": "debt",
+        "title": "Debt health",
+        "userScore": 45,
+        "benchmarkScore": 68,
+        "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+      },
+      "personalisedOpen": "Based on your responses, debt stress may be limiting your flexibility more than you realise."
+    }
+  },
+  {
+    "id": "69c97b89-657d-4d27-94af-29db80ea56ae",
+    "submittedAt": "2026-04-09T15:56:43.454Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 0,
+      "emergency": 2,
+      "debt": 1,
+      "hospital": 2,
+      "incomeProtection": 1,
+      "dependents": 2,
+      "retirement": 1,
+      "planning": 2,
+      "concern": 2
+    },
+    "result": {
+      "total": 50,
+      "tier": {
+        "label": "Critical Gaps Identified",
+        "tone": "rose",
+        "headline": "You may have critical financial gaps that could affect your long-term stability.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "comparisonDelta": -17,
+      "comparisonDirection": "below",
+      "comparisonText": "You are 17 points below the average Singaporean.",
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 49,
+          "benchmarkScore": 71,
+          "message": "You may not have sufficient emergency reserves if your income is disrupted."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 45,
+          "benchmarkScore": 68,
+          "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 45,
+          "benchmarkScore": 73,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 61,
+          "benchmarkScore": 69,
+          "message": "You have planning momentum, but your long-term roadmap may still need sharper structure."
+        }
+      ],
+      "weakestCategory": {
+        "key": "debt",
+        "title": "Debt health",
+        "userScore": 45,
+        "benchmarkScore": 68,
+        "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+      },
+      "personalisedOpen": "Based on your responses, debt stress may be limiting your flexibility more than you realise."
+    }
+  },
+  {
+    "id": "86a7be08-38af-42c9-8de8-95a62f95987c",
+    "submittedAt": "2026-04-09T16:45:41.464Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 2,
+      "emergency": 3,
+      "debt": 2,
+      "hospital": 1,
+      "incomeProtection": 0,
+      "dependents": 2,
+      "retirement": 0,
+      "planning": 1,
+      "concern": 2
+    },
+    "result": {
+      "total": 53,
+      "tier": {
+        "label": "Stable but Exposed",
+        "tone": "amber",
+        "headline": "You may have financial gaps that deserve attention soon.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "comparisonDelta": -14,
+      "comparisonDirection": "below",
+      "comparisonText": "You are 14 points below the average Singaporean.",
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 81,
+          "benchmarkScore": 71,
+          "message": "Your savings buffer appears more resilient than average."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 72,
+          "benchmarkScore": 68,
+          "message": "Your debt looks manageable today, but tighter margins can still become a problem under stress."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 21,
+          "benchmarkScore": 73,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 38,
+          "benchmarkScore": 69,
+          "message": "Your retirement planning may not be on track if priorities keep getting pushed back."
+        }
+      ],
+      "weakestCategory": {
+        "key": "protection",
+        "title": "Protection health",
+        "userScore": 21,
+        "benchmarkScore": 73,
+        "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+      },
+      "personalisedOpen": "Based on your responses, debt stress may be limiting your flexibility more than you realise."
+    }
+  },
+  {
+    "id": "2b933197-bb33-435a-bfa0-cac3a81a3a01",
+    "submittedAt": "2026-04-09T16:49:44.916Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 1,
+      "emergency": 2,
+      "debt": 1,
+      "hospital": 2,
+      "incomeProtection": 1,
+      "dependents": 2,
+      "retirement": 1,
+      "planning": 3,
+      "concern": 1
+    },
+    "result": {
+      "total": 55,
+      "tier": {
+        "label": "Stable but Exposed",
+        "tone": "amber",
+        "headline": "You may have financial gaps that deserve attention soon.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "comparisonDelta": -12,
+      "comparisonDirection": "below",
+      "comparisonText": "You are 12 points below the average Singaporean.",
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 60,
+          "benchmarkScore": 71,
+          "message": "Your emergency buffer exists, but it may still be thinner than you want in a major setback."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 45,
+          "benchmarkScore": 68,
+          "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 45,
+          "benchmarkScore": 73,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 70,
+          "benchmarkScore": 69,
+          "message": "You have planning momentum, but your long-term roadmap may still need sharper structure."
+        }
+      ],
+      "weakestCategory": {
+        "key": "debt",
+        "title": "Debt health",
+        "userScore": 45,
+        "benchmarkScore": 68,
+        "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+      },
+      "personalisedOpen": "Based on your responses, protection and medical cost exposure may be the area to review first."
+    }
+  },
+  {
+    "id": "b6bbec02-4461-465b-8029-15fdccc55c1a",
+    "submittedAt": "2026-04-09T16:53:03.994Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 2,
+      "emergency": 1,
+      "debt": 1,
+      "hospital": 2,
+      "incomeProtection": 1,
+      "dependents": 1,
+      "retirement": 2,
+      "planning": 1,
+      "concern": 1
+    },
+    "result": {
+      "total": 54,
+      "tier": {
+        "label": "Stable but Exposed",
+        "tone": "amber",
+        "headline": "You may have financial gaps that deserve attention soon.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "comparisonDelta": -13,
+      "comparisonDirection": "below",
+      "comparisonText": "You are 13 points below the average Singaporean.",
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 59,
+          "benchmarkScore": 71,
+          "message": "Your emergency buffer exists, but it may still be thinner than you want in a major setback."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 45,
+          "benchmarkScore": 68,
+          "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 51,
+          "benchmarkScore": 73,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 61,
+          "benchmarkScore": 69,
+          "message": "You have planning momentum, but your long-term roadmap may still need sharper structure."
+        }
+      ],
+      "weakestCategory": {
+        "key": "debt",
+        "title": "Debt health",
+        "userScore": 45,
+        "benchmarkScore": 68,
+        "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+      },
+      "personalisedOpen": "Based on your responses, protection and medical cost exposure may be the area to review first."
+    }
+  },
+  {
+    "id": "8e993974-5e85-4c29-8b24-e8b1443a6919",
+    "submittedAt": "2026-04-09T17:03:12.781Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 1,
+      "emergency": 2,
+      "debt": 1,
+      "hospital": 1,
+      "incomeProtection": 1,
+      "dependents": 1,
+      "retirement": 1,
+      "planning": 1,
+      "concern": 3
+    },
+    "result": {
+      "total": 49,
+      "tier": {
+        "label": "Critical Gaps Identified",
+        "tone": "rose",
+        "headline": "You may have critical financial gaps that could affect your long-term stability.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "comparisonDelta": -18,
+      "comparisonDirection": "below",
+      "comparisonText": "You are 18 points below the average Singaporean.",
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 60,
+          "benchmarkScore": 71,
+          "message": "Your emergency buffer exists, but it may still be thinner than you want in a major setback."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 45,
+          "benchmarkScore": 68,
+          "message": "Debt pressure may reduce your ability to recover quickly from a financial shock."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 40,
+          "benchmarkScore": 73,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 49,
+          "benchmarkScore": 69,
+          "message": "Your retirement planning may not be on track if priorities keep getting pushed back."
+        }
+      ],
+      "weakestCategory": {
+        "key": "protection",
+        "title": "Protection health",
+        "userScore": 40,
+        "benchmarkScore": 73,
+        "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+      },
+      "personalisedOpen": "Based on your responses, the biggest risk may be falling behind on long-term planning while life stays busy."
+    }
+  },
+  {
+    "id": "e1369140-2ce9-45da-8b0b-a529e29d9530",
+    "submittedAt": "2026-04-09T17:04:31.390Z",
+    "lead": {
+      "name": "Khairul harisin bin abdol aziz",
+      "phone": "+6581837505",
+      "email": "khairulful@gmail.com",
+      "consent": true
+    },
+    "answers": {
+      "income": 3,
+      "emergency": 2,
+      "debt": 2,
+      "hospital": 2,
+      "incomeProtection": 0,
+      "dependents": 1,
+      "retirement": 2,
+      "planning": 1,
+      "concern": 1
+    },
+    "result": {
+      "total": 63,
+      "tier": {
+        "label": "Stable but Exposed",
+        "tone": "amber",
+        "headline": "You may have financial gaps that deserve attention soon.",
+        "urgency": "These gaps are common, but delaying action increases risk."
+      },
+      "benchmark": 67,
+      "comparisonDelta": -4,
+      "comparisonDirection": "below",
+      "comparisonText": "You are 4 points below the average Singaporean.",
+      "summary": "You may have gaps compared to the average Singaporean.",
+      "categories": [
+        {
+          "key": "savings",
+          "title": "Savings health",
+          "userScore": 82,
+          "benchmarkScore": 71,
+          "message": "Your savings buffer appears more resilient than average."
+        },
+        {
+          "key": "debt",
+          "title": "Debt health",
+          "userScore": 72,
+          "benchmarkScore": 68,
+          "message": "Your debt looks manageable today, but tighter margins can still become a problem under stress."
+        },
+        {
+          "key": "protection",
+          "title": "Protection health",
+          "userScore": 38,
+          "benchmarkScore": 73,
+          "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+        },
+        {
+          "key": "planning",
+          "title": "Planning health",
+          "userScore": 61,
+          "benchmarkScore": 69,
+          "message": "You have planning momentum, but your long-term roadmap may still need sharper structure."
+        }
+      ],
+      "weakestCategory": {
+        "key": "protection",
+        "title": "Protection health",
+        "userScore": 38,
+        "benchmarkScore": 73,
+        "message": "Your protection coverage may be insufficient for your dependents or current lifestyle."
+      },
+      "personalisedOpen": "Based on your responses, protection and medical cost exposure may be the area to review first."
+    }
+  }
+]
