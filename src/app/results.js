@@ -4,6 +4,26 @@ import { useState } from "react";
 
 const N8N_WEBHOOK_URL = "https://khainelo.app.n8n.cloud/webhook/Meridian-Assestment-Lead";
 
+async function sendLeadToN8n(payload) {
+  if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+    const sent = navigator.sendBeacon(
+      N8N_WEBHOOK_URL,
+      new Blob([JSON.stringify(payload)], { type: "text/plain;charset=UTF-8" })
+    );
+
+    if (sent) return true;
+  }
+
+  await fetch(N8N_WEBHOOK_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  return true;
+}
+
 function toneClasses(tone) {
   if (tone === "rose") return { badge: "border-rose-400/30 bg-rose-500/10 text-rose-200", accent: "bg-rose-500", cta: "bg-white text-rose-950 hover:bg-rose-50" };
   if (tone === "emerald") return { badge: "border-emerald-400/30 bg-emerald-500/10 text-emerald-200", accent: "bg-emerald-500", cta: "bg-white text-emerald-950 hover:bg-emerald-50" };
@@ -19,11 +39,11 @@ export default function ResultsDashboard({ results, lead }) {
     if (ctaState === "sending" || ctaState === "sent") return;
     setCtaState("sending");
     try {
-      await fetch(N8N_WEBHOOK_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lead, result: results, source: "sfhs-dashboard", timestamp: new Date().toISOString() }),
+      await sendLeadToN8n({
+        lead,
+        result: results,
+        source: "sfhs-dashboard",
+        timestamp: new Date().toISOString(),
       });
       setCtaState("sent");
     } catch (error) {

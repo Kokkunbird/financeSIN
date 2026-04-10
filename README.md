@@ -18,8 +18,8 @@ Open `http://localhost:3000`.
 - Exact rule-based risk scoring engine
 - Personalized results and insights
 - Lead capture form with consent checkbox
-- Local JSON storage via Next.js API route
+- Lead delivery via n8n webhook
 
-## Lead storage
+## Lead handling
 
-Submitted leads are stored in `data/leads.json`.
+Lead submissions are sent directly to the configured n8n webhook.

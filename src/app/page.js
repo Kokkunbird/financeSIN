@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import ResultsDashboard from "./results";
 
+const N8N_WEBHOOK_URL = "https://khainelo.app.n8n.cloud/webhook/Meridian-Assestment-Lead";
+
 const QUESTIONS = [
   {
     id: "age",
@@ -261,12 +263,24 @@ function getValueScore(question, answers) {
   return scoreSingle(value ?? 0);
 }
 
-function saveLeadToBrowser(submission) {
-  if (typeof window === "undefined") return;
-  const key = "financial-health-check-leads";
-  const current = JSON.parse(window.localStorage.getItem(key) || "[]");
-  current.push({ id: crypto.randomUUID(), submittedAt: new Date().toISOString(), ...submission });
-  window.localStorage.setItem(key, JSON.stringify(current));
+async function sendLeadToN8n(payload) {
+  if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+    const sent = navigator.sendBeacon(
+      N8N_WEBHOOK_URL,
+      new Blob([JSON.stringify(payload)], { type: "text/plain;charset=UTF-8" })
+    );
+
+    if (sent) return true;
+  }
+
+  await fetch(N8N_WEBHOOK_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  return true;
 }
 
 function buildResults(answers) {
@@ -469,20 +483,23 @@ export default function FinancialHealthApp() {
     const builtResults = teaserResults || buildResults(answers);
     setSubmitting(true);
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lead, answers, result: builtResults }),
+      await sendLeadToN8n({
+        lead,
+        answers,
+        result: builtResults,
+        source: "sfhs-lead-unlock",
+        timestamp: new Date().toISOString(),
       });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(payload.error || "Unable to save your lead right now.");
     } catch {
-      saveLeadToBrowser({ lead, answers, result: builtResults, storage: "browser" });
+      setLeadError("Unable to send your details right now. Please try again in a moment.");
+      setSubmitting(false);
+      return;
     } finally {
       setSubmitting(false);
-      setResults(builtResults);
-      setStage("results");
     }
+
+    setResults(builtResults);
+    setStage("results");
   }
 
   return (

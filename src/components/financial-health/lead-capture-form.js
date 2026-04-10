@@ -7,18 +7,26 @@ const initialLeadForm = {
   consent: false,
 };
 
-function saveLeadToBrowser(submission) {
-  if (typeof window === "undefined") return;
+const N8N_WEBHOOK_URL = "https://khainelo.app.n8n.cloud/webhook/Meridian-Assestment-Lead";
 
-  const storageKey = "financial-health-check-leads";
-  const existing = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
-  existing.push({
-    id: crypto.randomUUID(),
-    submittedAt: new Date().toISOString(),
-    ...submission,
-    storage: "browser",
+async function sendLeadToN8n(payload) {
+  if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+    const sent = navigator.sendBeacon(
+      N8N_WEBHOOK_URL,
+      new Blob([JSON.stringify(payload)], { type: "text/plain;charset=UTF-8" })
+    );
+
+    if (sent) return true;
+  }
+
+  await fetch(N8N_WEBHOOK_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
-  window.localStorage.setItem(storageKey, JSON.stringify(existing));
+
+  return true;
 }
 
 export function LeadCaptureForm({ answers, result, onSubmitted, onBack }) {
@@ -42,32 +50,18 @@ export function LeadCaptureForm({ answers, result, onSubmitted, onBack }) {
     setStatus("submitting");
 
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          lead: form,
-          answers,
-          result,
-        }),
-      });
-
-      const payload = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(payload.error || "Unable to save your details right now.");
-      }
-
-      setStatus("success");
-      onSubmitted(payload);
-    } catch (submitError) {
-      saveLeadToBrowser({
+      await sendLeadToN8n({
         lead: form,
         answers,
         result,
+        source: "legacy-lead-capture-form",
+        timestamp: new Date().toISOString(),
       });
       setStatus("success");
-      onSubmitted({ success: true, storage: "browser" });
+      onSubmitted({ success: true, destination: "n8n" });
+    } catch (submitError) {
+      setStatus("idle");
+      setError(submitError.message || "Unable to send your details right now.");
     }
   }
 
