@@ -1,6 +1,7 @@
 ﻿"use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import ResultsDashboard from "./results";
 
 const N8N_WEBHOOK_URL = "https://khainelo.app.n8n.cloud/webhook/Meridian-Assestment-Lead";
@@ -314,7 +315,7 @@ function sectionWhyScore(key, userScore, answers) {
   return entry.high;
 }
 
-function buildSgContext(total, benchmark, answers) {
+function buildSgContext(total, benchmark) {
   const aboveBelow = total >= benchmark.score ? "above" : "below";
   const delta = Math.abs(total - benchmark.score);
   if (total >= 72) {
@@ -525,7 +526,7 @@ function buildResults(answers) {
       ? "With children in the picture, maximising Baby Bonus, optimising household cash flow, and reviewing your protection coverage can create compounding impact. These are often the highest-leverage steps for your life stage."
       : "Your next meaningful gain may come less from earning more and more from making your current structure work together more intentionally — connecting your CPF, insurance, and investments into a coherent plan.";
 
-  const sgContext = buildSgContext(total, benchmark, answers);
+  const sgContext = buildSgContext(total, benchmark);
   const urgencyNarrative = buildUrgencyNarrative(answers, sections);
   const gapSummary = buildGapSummary(sections, answers);
 
@@ -554,8 +555,24 @@ function buildResults(answers) {
     disclaimer: "This tool provides general financial insights and does not constitute financial advice under MAS regulations.",
   };
 }
-export default function FinancialHealthApp() {
-  const [stage, setStage] = useState("landing");
+function generateDay3Tip(results) {
+  const tips = {
+    stability: "A quick tip on your emergency fund: MAS guidelines suggest 6 months of expenses set aside before focusing on growth. At Singapore's average household cost of ~$4,900/month, that is roughly $29,000 as a starting baseline.",
+    cpf: "A quick CPF tip: Voluntary top-ups to your Special Account of up to $8,000/year earn 4% risk-free and qualify for full dollar-for-dollar tax relief — one of the best guaranteed returns available in Singapore.",
+    protection: "A quick protection tip: The LIA benchmark is 9–10× your annual income in life cover. If you earn $60,000/year, you would want at least $540,000 in total coverage. It is worth checking whether your current policies meet that threshold.",
+    housing: "A quick housing tip: Every CPF dollar used for your mortgage is one less dollar compounding for retirement. Knowing your exact CPF housing withdrawal amount helps you track your retirement sum progress accurately.",
+    investments: "A quick investing tip: Singapore Savings Bonds currently offer ~3–4% returns with zero risk and full government backing. If you have savings sitting in a bank account earning less, SSBs are a low-effort upgrade.",
+    habits: "A quick money habit tip: Tracking your expenses for just one month — even roughly — typically uncovers $200–$400 in non-essential spending. Most people are genuinely surprised by where the money actually goes.",
+    future: "A quick planning tip: CPF nomination is free, takes 10 minutes online, and ensures your CPF savings go directly to your chosen people without probate delays. If yours is not up to date, it is worth doing today.",
+  };
+  return tips[results.weakestArea?.key] ?? "Reviewing your financial plan once a year — even informally — makes a measurable difference to long-term outcomes.";
+}
+
+function FinancialHealthApp() {
+  const searchParams = useSearchParams();
+  const lifeStageSource = searchParams.get("ls") ?? null;
+
+  const [stage, setStage] = useState(() => lifeStageSource ? "quiz" : "landing");
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({ age: 30, children: 0 });
   const [lead, setLead] = useState(INITIAL_LEAD);
@@ -621,8 +638,18 @@ export default function FinancialHealthApp() {
         lead,
         answers,
         result: builtResults,
-        source: "sfhs-lead-unlock",
+        source: lifeStageSource ? `sfhs-${lifeStageSource}` : "sfhs-lead-unlock",
+        lifeStageSource,
         timestamp: new Date().toISOString(),
+        followUp: {
+          grade: builtResults.tier.grade,
+          score: builtResults.total,
+          lifeStage: builtResults.lifeStage,
+          weakestSection: builtResults.weakestArea?.key,
+          topGapTitle: builtResults.gapSummary?.[0]?.title ?? null,
+          day3Tip: generateDay3Tip(builtResults),
+          sectionScores: builtResults.sections.map((s) => ({ key: s.key, title: s.title, score: s.userScore })),
+        },
       });
     } catch {
       setLeadError("Unable to send your details right now. Please try again in a moment.");
@@ -924,14 +951,6 @@ function InfoCard({ title, text, icon }) {
   );
 }
 
-function FeatureCard({ title, text, tone }) {
-  const toneClasses = {
-    rose: "border-rose-200 bg-rose-50 text-rose-700",
-    amber: "border-amber-200 bg-amber-50 text-amber-700",
-    emerald: "border-emerald-200 bg-emerald-50 text-emerald-700",
-  };
-  return <div className={`rounded-[1.5rem] border p-5 ${toneClasses[tone]}`}><p className="text-sm font-semibold uppercase tracking-[0.2em]">{title}</p><p className="mt-2 text-sm leading-6 text-slate-700">{text}</p></div>;
-}
 
 function ValueRow({ title, text }) {
   return <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4"><p className="text-sm font-semibold text-slate-900">{title}</p><p className="mt-1 text-sm leading-6 text-slate-600">{text}</p></div>;
@@ -955,4 +974,12 @@ function PulseIcon() {
 
 function CheckIcon() {
   return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>;
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <FinancialHealthApp />
+    </Suspense>
+  );
 }
