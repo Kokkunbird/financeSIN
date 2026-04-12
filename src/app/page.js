@@ -3,6 +3,7 @@
 import { useMemo, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ResultsDashboard from "./results";
+import { DecorCoin, DecorChart, DecorShield, DecorPlant, DecorHouse, CATEGORY_ICON } from "@/components/MoneyIcons";
 
 const N8N_WEBHOOK_URL = "https://khainelo.app.n8n.cloud/webhook/Meridian-Assestment-Lead";
 
@@ -684,6 +685,15 @@ function FinancialHealthApp() {
       <main className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
         {stage === "landing" ? (
           <section className="relative grid gap-12 py-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-16">
+            {/* ── Floating decorative graphics ── */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+              <div className="absolute -left-6 top-16 opacity-[0.13] lg:opacity-[0.18]"><DecorCoin size={96} /></div>
+              <div className="absolute right-[42%] top-4 opacity-[0.10]"><DecorChart size={64} /></div>
+              <div className="absolute bottom-20 left-[38%] opacity-[0.09]"><DecorPlant size={72} /></div>
+              <div className="absolute -right-4 bottom-32 opacity-[0.11]"><DecorShield size={68} /></div>
+              <div className="absolute right-[12%] top-24 opacity-[0.08] hidden lg:block"><DecorHouse size={60} /></div>
+            </div>
+
             {/* ── Left column ── */}
             <div className="space-y-9">
               <div className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-700">
@@ -713,6 +723,14 @@ function FinancialHealthApp() {
                 <p className="text-sm text-slate-400">No account needed · results in under 3 minutes</p>
               </div>
 
+              {/* Stat badges */}
+              <div className="flex flex-wrap gap-2">
+                <StatBadge color="amber" label="CPF SA earns 4% p.a. — risk-free" />
+                <StatBadge color="rose" label="Protection benchmark: 9× annual income" />
+                <StatBadge color="indigo" label="Emergency target: 6 months expenses" />
+                <StatBadge color="emerald" label="SG life expectancy: 83–85 years" />
+              </div>
+
               <div className="grid gap-3 sm:grid-cols-3">
                 <InfoCard
                   icon="cpf"
@@ -739,6 +757,14 @@ function FinancialHealthApp() {
             {/* ── Right column: score preview card ── */}
             <div className="relative overflow-hidden rounded-[2rem] bg-slate-950 shadow-[0_40px_100px_rgba(15,23,42,0.22)]">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(ellipse_at_top,_rgba(99,102,241,0.22),_transparent_65%)]" />
+              {/* Decorative coin — top right corner */}
+              <div className="pointer-events-none absolute right-4 top-4 opacity-[0.12]" aria-hidden="true">
+                <DecorCoin size={72} />
+              </div>
+              {/* Decorative chart — bottom left */}
+              <div className="pointer-events-none absolute -bottom-4 -left-4 opacity-[0.08]" aria-hidden="true">
+                <DecorChart size={80} />
+              </div>
 
               <div className="relative p-6 sm:p-8">
                 <div className="mb-6 flex items-center justify-between">
@@ -806,7 +832,15 @@ function FinancialHealthApp() {
           <section className="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.06)] sm:p-8">
             <div className="space-y-8">
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.24em] text-slate-500"><span>{currentQuestion.category}</span><span>Step {currentStep + 1} of {QUESTIONS.length}</span></div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {CATEGORY_ICON[currentQuestion.category] && (
+                      <span className="shrink-0">{CATEGORY_ICON[currentQuestion.category]}</span>
+                    )}
+                    <span className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{currentQuestion.category}</span>
+                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Step {currentStep + 1} of {QUESTIONS.length}</span>
+                </div>
                 <div className="h-2 rounded-full bg-slate-100"><div className="h-full rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 transition-all duration-500" style={{ width: `${progress}%` }} /></div>
               </div>
 
@@ -958,6 +992,29 @@ function ValueRow({ title, text }) {
 
 function Input({ label, value, onChange, placeholder, type = "text" }) {
   return <label className="space-y-2"><span className="text-sm font-semibold text-slate-800">{label}</span><input type={type} value={value} onChange={(event) => onChange(event.target.value)} className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" placeholder={placeholder} /></label>;
+}
+
+const BADGE_COLORS = {
+  amber:   "border-amber-200  bg-amber-50   text-amber-700",
+  rose:    "border-rose-200   bg-rose-50    text-rose-700",
+  indigo:  "border-indigo-200 bg-indigo-50  text-indigo-700",
+  emerald: "border-emerald-200 bg-emerald-50 text-emerald-700",
+};
+
+const BADGE_DOTS = {
+  amber:   "bg-amber-400",
+  rose:    "bg-rose-400",
+  indigo:  "bg-indigo-400",
+  emerald: "bg-emerald-400",
+};
+
+function StatBadge({ color = "indigo", label }) {
+  return (
+    <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium ${BADGE_COLORS[color]}`}>
+      <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${BADGE_DOTS[color]}`} />
+      {label}
+    </span>
+  );
 }
 
 function BlurCard() {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SECTION_ICON } from "@/components/MoneyIcons";
 
 const N8N_WEBHOOK_URL = "https://khainelo.app.n8n.cloud/webhook/Meridian-Assestment-Lead";
 
@@ -190,9 +191,14 @@ export default function ResultsDashboard({ results, lead }) {
                           className="w-full px-4 pt-4 pb-3 text-left"
                         >
                           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                            <div>
-                              <p className="text-base font-semibold text-white">{section.title}</p>
-                              <p className="mt-0.5 text-xs text-slate-400">{section.risk}</p>
+                            <div className="flex items-start gap-3">
+                              {SECTION_ICON[section.key] && (
+                                <span className="mt-0.5 shrink-0">{SECTION_ICON[section.key]}</span>
+                              )}
+                              <div>
+                                <p className="text-base font-semibold text-white">{section.title}</p>
+                                <p className="mt-0.5 text-xs text-slate-400">{section.risk}</p>
+                              </div>
                             </div>
                             <div className="flex items-center gap-3">
                               <p className="text-xs text-slate-400 whitespace-nowrap">
